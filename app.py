@@ -91,8 +91,9 @@ def extract_candidate_id(selection: str | None) -> str | None:
     match = re.search(r"CAND_\d{7}", selection)
     return match.group(0) if match else selection.strip() or None
 
+TOP_SELECTION_LIMIT = 100
 
-def candidate_prep_choices(scored, limit: int = 20) -> list[str]:
+def candidate_prep_choices(scored, limit: int = TOP_SELECTION_LIMIT) -> list[str]:
     choices = []
     for rank, (_, e, _) in enumerate(scored[:limit], start=1):
         title = display_title(e.title) if e.title else "Unknown"
@@ -425,13 +426,13 @@ def interview_prep(scored, selection):
 # ---------------------------------------------------------------------------
 # CSV export
 # ---------------------------------------------------------------------------
-
 def export_csv(scored, count: int = 100) -> str:
     if not scored:
         return ""
-    count = max(1, min(count, len(scored)))
-    rows  = []
-    for rank, (score, e, b) in enumerate(scored[:count], start=1):
+    if len(scored) < 100:
+        raise ValueError(f"Need at least 100 candidates to export, got {len(scored)}")
+    rows = []
+    for rank, (score, e, b) in enumerate(scored[:100], start=1):
         adjusted = max(0.0, score - (rank - 1) * 1e-7)
         rows.append({
             "candidate_id": e.candidate_id,
@@ -673,16 +674,13 @@ with gr.Blocks(
                         "Generate tailored questions from a candidate's score profile, skills, and audit flags."
                     )
                     interview_selector = gr.Dropdown(
-                        label="Candidate (top 20)", choices=[], value=None, interactive=True,
+                        label="Candidate (top 100)", choices=[], value=None, interactive=True,
                     )
                     out_prep = gr.Markdown(value=INTERVIEW_PREP_PLACEHOLDER)
 
                 with gr.TabItem("📥 Export CSV"):
                     with gr.Row():
-                        export_count = gr.Number(
-                            label="Number of Candidates to Export",
-                            value=100, precision=0, minimum=1,
-                        )
+                        gr.Markdown("Exports exactly **100 candidates** as required by the submission spec.")
                         btn_export = gr.Button("Export to CSV", variant="secondary")
                     out_csv = gr.File(label="CSV Download")
 
@@ -772,20 +770,20 @@ adjust sliders to re-rank with custom priorities.
         outputs=out_prep,
     )
 
-    def _export(scored, count):
+    def _export(scored):
         import os, tempfile
-        count    = int(count) if count else 100
-        csv_text = export_csv(scored, count)
-        if not csv_text:
+        if not scored or len(scored) < 100:
+            return None   # silently returns — user sees no file until pool is large enough
+        try:
+            csv_text = export_csv(scored)
+        except ValueError:
             return None
-        filename  = f"hiresense_top{count}.csv"
-        temp_path = os.path.join(tempfile.gettempdir(), filename)
+        temp_path = os.path.join(tempfile.gettempdir(), "Code and Commit.csv")
         with open(temp_path, "w", encoding="utf-8") as f:
             f.write(csv_text)
         return temp_path
 
-    btn_export.click(fn=_export, inputs=[state_scored, export_count], outputs=out_csv)
-
+    btn_export.click(fn=_export, inputs=[state_scored], outputs=out_csv)
 
 if __name__ == "__main__":
     demo.launch(theme=gr.themes.Base())
