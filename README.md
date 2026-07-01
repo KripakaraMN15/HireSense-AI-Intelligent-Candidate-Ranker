@@ -34,28 +34,7 @@ consistency checks to reduce inflated or misleading profiles.
 
 #  Scoring Signals
 
-Each candidate is evaluated across six dimensions:
-
-  -----------------------------------------------------------------------
-  Signal                        Description
-  ----------------------------- -----------------------------------------
-  Role                          Title and role alignment with the job
-                                description
-
-  Production                    Production ML, retrieval, search and
-                                deployment evidence
-
-  Career                        Experience quality, progression and
-                                company background
-
-  Skills                        Verified technical skills weighted by
-                                credibility
-
-  Logistics                     Location, notice period, work preference
-                                and availability
-
-  Behavior                      Recruiter engagement and profile activity
-  -----------------------------------------------------------------------
+Each candidate is evaluated across various signals
 
 These signals are combined into a final ranking score while applying
 audit penalties for inconsistent or suspicious profiles.
