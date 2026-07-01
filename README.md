@@ -1,14 +1,3 @@
----
-app_file: app.py
-colorFrom: blue
-colorTo: indigo
-emoji: 🎯
-pinned: false
-sdk: gradio
-sdk_version: 6.19.0
-title: HireSense AI Intelligent Candidate Ranker
----
-
 # 🎯 HireSense AI -- Intelligent Candidate Ranker
 
 HireSense AI is a transparent, explainable candidate ranking platform
@@ -24,7 +13,7 @@ consistency checks to reduce inflated or misleading profiles.
 
 ------------------------------------------------------------------------
 
-# ✨ Key Features
+#  Key Features
 
 -   Transparent multi-signal candidate ranking
 -   Six independent scoring dimensions
@@ -43,7 +32,7 @@ consistency checks to reduce inflated or misleading profiles.
 
 ------------------------------------------------------------------------
 
-# 🧠 Scoring Signals
+#  Scoring Signals
 
 Each candidate is evaluated across six dimensions:
 
@@ -73,7 +62,7 @@ audit penalties for inconsistent or suspicious profiles.
 
 ------------------------------------------------------------------------
 
-# 🛡️ Profile Auditing
+#  Profile Auditing
 
 The ranking engine detects quality issues such as:
 
@@ -89,7 +78,7 @@ explainable.
 
 ------------------------------------------------------------------------
 
-# 📊 Dashboard
+# Dashboard
 
 The Gradio application includes:
 
@@ -104,7 +93,7 @@ The Gradio application includes:
 
 ------------------------------------------------------------------------
 
-# 🚀 How to Run
+# How to Run
 
 ## 1. Install
 
@@ -124,7 +113,7 @@ Open:
 
 ------------------------------------------------------------------------
 
-# 📁 Supported Input
+# Supported Input
 
 Upload candidate data as:
 
@@ -136,7 +125,7 @@ A sample dataset is included for testing.
 
 ------------------------------------------------------------------------
 
-# 📖 How to Use
+#  How to Use
 
 1.  Launch the application.
 2.  Upload a candidate dataset.
@@ -149,7 +138,7 @@ A sample dataset is included for testing.
 
 ------------------------------------------------------------------------
 
-# 📤 Output
+#  Output
 
 The application generates:
 
@@ -165,7 +154,7 @@ The application generates:
 
 ------------------------------------------------------------------------
 
-# 🏗️ Project Structure
+#  Project Structure
 
     app.py               # Gradio application
     rank.py              # Scoring and ranking engine
@@ -188,7 +177,7 @@ The application generates:
 
 ------------------------------------------------------------------------
 
-# 🎯 Design Principles
+#  Design Principles
 
 -   Explainable AI
 -   Transparent scoring
@@ -199,18 +188,6 @@ The application generates:
 
 ------------------------------------------------------------------------
 
-# 📈 Future Improvements
-
--   Resume parsing
--   JD parsing
--   Semantic embeddings
--   LLM-powered explanations
--   Multi-JD comparison
--   ATS integration
--   Real-time candidate search
--   Recruiter feedback learning
-
-------------------------------------------------------------------------
 
 # 📄 License
 
