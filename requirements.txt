@@ -1,0 +1,4 @@
+# Core dependencies for Gradio interactive dashboard
+gradio
+pandas
+plotly
