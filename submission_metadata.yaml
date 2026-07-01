@@ -11,8 +11,6 @@ primary_contact:
 github_repo: "https://github.com/KripakaraMN15/HireSense-AI-Intelligent-Candidate-Ranker"
 sandbox_link: "https://huggingface.co/spaces/KripakaraMN/redrob-ranker"
 
-reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
-
 reproduce_command: "python app.py"
 
 compute:
@@ -33,7 +31,10 @@ ai_usage_summary: |
   AI assistance was used for solution ideation, system architecture design, UI refinement, documentation, visualization design, and code review. The candidate ranking logic, scoring methodology, and implementation remain deterministic and transparent. No candidate profile data was processed by external LLMs during ranking or inference.
 
 methodology_summary: |
-  HireSense AI is a transparent, CPU-only candidate ranking system designed for Senior AI Engineer hiring. It extracts structured evidence from candidate profiles, career history, skills, and Redrob behavioral signals to compute explainable scores across Role Fit, Production Experience, Career Progression, Technical Skills, Logistics, Behavior, and Consistency. The engine applies calibration bonuses and penalties for unsupported claims or inconsistencies, producing ranked candidates with reasoning, confidence scores, skill-gap analysis, interview preparation, and executive hiring insights. The entire pipeline executes locally without GPU acceleration, external APIs, or network access during ranking.
+  HireSense AI is a transparent, CPU-only candidate ranking system designed for Senior AI Engineer hiring.
+  It extracts structured evidence from candidate profiles, career history, skills, and Redrob behavioral signals to compute explainable scores across Role Fit, Production Experience, Career Progression, Technical Skills, Logistics, Behavior, and Consistency. 
+  The engine applies calibration bonuses and penalties for unsupported claims or inconsistencies, producing ranked candidates with reasoning, confidence scores, skill-gap analysis, interview preparation, and executive hiring insights.
+  The entire pipeline executes locally without GPU acceleration, external APIs, or network access during ranking.
 
 declarations:
   read_submission_spec: true
