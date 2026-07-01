@@ -242,36 +242,63 @@ def get_confidence_label(confidence: int) -> str:
 # ---------------------------------------------------------------------------
 
 def get_strengths_weaknesses(e):
-    """Extract JD-aligned strengths and missing capabilities."""
+    """Extract strengths and JD-relative capability gaps."""
+
+    # -----------------------------
+    # Strengths
+    # -----------------------------
     strengths = []
+
     evidence_labels = {
-        "retrieval":  "Retrieval",
-        "llm_nlp":    "LLM / NLP",
+        "retrieval": "Retrieval",
+        "llm_nlp": "LLM / NLP",
         "evaluation": "Evaluation",
-        "python":     "Python",
+        "python": "Python",
         "production": "Production ML",
     }
+
+    # Add evidence-based strengths
     for key, label in evidence_labels.items():
         if e.group_hits_career.get(key, 0) > 0:
             strengths.append(label)
 
+    # Add top detected skills
     strengths.extend(top_skill_names(e, limit=3))
 
-    profile_text = e.text_all.lower()
-    required_capabilities = {
-        "Python":     ["python"],
-        "Retrieval":  ["retrieval", "search", "ranking", "recommendation"],
-        "Embeddings": ["embedding", "embeddings", "sentence-transformer", "bge", "e5"],
-        "Vector DB":  ["pinecone", "qdrant", "milvus", "weaviate", "faiss",
-                       "opensearch", "elasticsearch", "vector search"],
-        "Evaluation": ["ndcg", "mrr", "map", "offline benchmark",
-                       "a/b", "ab test", "ragas", "deepeval", "trulens"],
+    # Remove duplicates while preserving order
+    strengths = list(dict.fromkeys(strengths))
+
+    # -----------------------------
+    # -----------------------------
+     # Missing Skills
+    # -----------------------------
+    missing = []
+
+    # Only show capability gaps that are actually required by the JD
+    jd_capabilities = {
+        "retrieval": "Retrieval",
+        "llm_nlp": "LLM / NLP",
+        "evaluation": "Evaluation",
+        "python": "Python",
+        "production": "Production ML",
     }
-    weaknesses = [
-        cap for cap, kws in required_capabilities.items()
-        if not any(kw in profile_text for kw in kws)
-    ]
-    return strengths[:5], weaknesses[:4]
+
+    # Normalize strengths for comparison
+    strengths_lower = {s.lower() for s in strengths}
+
+    for key, label in jd_capabilities.items():
+
+        # If evidence already exists, it is NOT missing
+        if e.group_hits_career.get(key, 0) > 0:
+            continue
+
+        # If already shown as a strength, don't show it as missing
+        if label.lower() in strengths_lower:
+            continue
+
+        missing.append(label)
+
+    return strengths[:5], missing[:4]
 
 
 # ---------------------------------------------------------------------------
@@ -318,7 +345,7 @@ def generate_html_cards(scored) -> str:
 
     parts = [generate_pool_banner(scored)]
 
-    for rank, (score, e, b) in enumerate(scored[:20], start=1):
+    for rank, (score, e, b) in enumerate(scored[:100], start=1):
         title          = esc(display_title(e.title) if e.title else "Technical Candidate")
         candidate_name = esc(e.name if e.name else "Unknown Candidate")
         company        = e.current_company.title() if e.current_company else "—"
@@ -388,16 +415,16 @@ def generate_html_cards(scored) -> str:
             strengths_html = f'{_section_header("Strengths", "#10b981")}<div style="line-height:2;">{badges}</div>'
 
         # Weaknesses
-        weaknesses_html = ""
-        if weaknesses:
-            badges = "".join(
-                f'<span style="display:inline-flex;align-items:center;gap:3px;'
-                f'background:rgba(239,68,68,0.08);color:#fca5a5;'
-                f'padding:3px 9px;border-radius:4px;font-size:11px;margin:2px 3px 2px 0;'
-                f'border:1px solid rgba(239,68,68,0.2);">✗ {w}</span>'
-                for w in weaknesses
-            )
-            weaknesses_html = f'{_section_header("Missing Skills", "#ef4444")}<div style="line-height:2;">{badges}</div>'
+        # weaknesses_html = ""
+        # if weaknesses:
+        #     badges = "".join(
+        #         f'<span style="display:inline-flex;align-items:center;gap:3px;'
+        #         f'background:rgba(239,68,68,0.08);color:#fca5a5;'
+        #         f'padding:3px 9px;border-radius:4px;font-size:11px;margin:2px 3px 2px 0;'
+        #         f'border:1px solid rgba(239,68,68,0.2);">✗ {w}</span>'
+        #         for w in weaknesses
+        #     )
+        #     weaknesses_html = f'{_section_header("Missing Skills", "#ef4444")}<div style="line-height:2;">{badges}</div>'
 
         # Resume health
         health_checks = [
@@ -462,7 +489,6 @@ def generate_html_cards(scored) -> str:
           {_section_header("Evidence")}
           {evidence_checklist}
           {strengths_html}
-          {weaknesses_html}
           {health_html}
           {penalty_row}
           {_section_header("Summary", "#94a3b8")}
