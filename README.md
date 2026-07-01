@@ -14,46 +14,43 @@ AI](https://img.shields.io/badge/Explainable-AI-indigo)
 
 ------------------------------------------------------------------------
 
-# ✨ Features at a Glance
+#  Features at a Glance
 
   -----------------------------------------------------------------------
   Feature                        Description
   ------------------------------ ----------------------------------------
-  🎯 Multi-Signal Ranking        Scores candidates across six independent
+   Multi-Signal Ranking        Scores candidates across six independent
                                  recruiter signals
 
-  📊 Executive Dashboard         High-level insights into the entire
+   Executive Dashboard         High-level insights into the entire
                                  candidate pool
 
-  👤 Candidate 360 Cards         Rich recruiter-friendly candidate
+   Candidate 360 Cards         Rich recruiter-friendly candidate
                                  profiles
 
-  📋 Signal Evidence             Shows evidence supporting each
+   Signal Evidence             Shows evidence supporting each
                                  recommendation
 
-  💪 Strength Analysis           Highlights candidate strengths relevant
+  Strength Analysis           Highlights candidate strengths relevant
                                  to the JD
 
-  🩺 Resume Health               Detects profile quality and consistency
+   Resume Health               Detects profile quality and consistency
 
-  🎯 Confidence Score            Confidence indicator for every
+   Confidence Score            Confidence indicator for every
                                  recommendation
 
-  📈 Skill Gap Analysis          Visual comparison of candidate
+   Skill Gap Analysis          Visual comparison of candidate
                                  capability vs expected skills
 
-  📡 Radar Comparison            Compare candidates across all scoring
-                                 dimensions
-
-  🎤 Interview Preparation       Automatically generated interview
+   Interview Preparation       Automatically generated interview
                                  guidance
 
-  📥 CSV Export                  Export Top-100 ranked candidates
+   CSV Export                  Export Top-100 ranked candidates
   -----------------------------------------------------------------------
 
 ------------------------------------------------------------------------
 
-# 📑 Table of Contents
+#  Table of Contents
 
 -   Overview
 -   Pipeline
@@ -69,7 +66,7 @@ AI](https://img.shields.io/badge/Explainable-AI-indigo)
 
 ------------------------------------------------------------------------
 
-# 🏗️ Pipeline
+#  Pipeline
 
 ``` text
 Candidate Dataset (.json/.jsonl)
@@ -116,7 +113,7 @@ Open:
 
 ------------------------------------------------------------------------
 
-# 📖 How to Use
+#  How to Use
 
 1.  Launch the application.
 2.  Upload a candidate dataset (`.json`, `.jsonl`, or `.jsonl.gz`).
@@ -128,9 +125,9 @@ Open:
 
 ------------------------------------------------------------------------
 
-# 🖥️ Dashboard Overview
+#  Dashboard Overview
 
-## 🏆 Candidate Shortlist
+##  Candidate Shortlist
 
 Displays recruiter-friendly candidate cards containing:
 
@@ -146,7 +143,7 @@ Displays recruiter-friendly candidate cards containing:
 
 ------------------------------------------------------------------------
 
-## 📊 Executive Summary
+##  Executive Summary
 
 Provides overall hiring insights including:
 
@@ -160,7 +157,7 @@ Provides overall hiring insights including:
 
 ------------------------------------------------------------------------
 
-## 📈 Skill Gap Analysis
+##  Skill Gap Analysis
 
 Visual comparison between expected capabilities and candidate strengths
 across:
@@ -174,14 +171,14 @@ across:
 
 ------------------------------------------------------------------------
 
-## 📡 Candidate Comparison
+##  Candidate Comparison
 
 Interactive radar visualization comparing multiple candidates across all
 scoring dimensions.
 
 ------------------------------------------------------------------------
 
-## 🎤 Interview Preparation
+##  Interview Preparation
 
 Generates recruiter-focused interview questions based on:
 
@@ -193,7 +190,7 @@ Generates recruiter-focused interview questions based on:
 
 ------------------------------------------------------------------------
 
-## 📥 CSV Export
+##  CSV Export
 
 Exports the Top-100 ranked candidates including:
 
@@ -204,25 +201,25 @@ Exports the Top-100 ranked candidates including:
 
 ------------------------------------------------------------------------
 
-# 🧠 Scoring Methodology
+#  Scoring Methodology
 
 HireSense AI evaluates every candidate using six independent signals.
 
   Signal          Purpose
   --------------- --------------------------------------------------
-  🎯 Role Fit     Alignment between job title and target role
-  ⚙️ Production   Production ML, retrieval and deployment evidence
-  📈 Career       Experience quality and progression
-  💻 Skills       Technical capability and credibility
-  📍 Logistics    Location, notice period and availability
-  🤝 Behavior     Recruiter engagement and profile activity
+   Role Fit     Alignment between job title and target role
+   Production   Production ML, retrieval and deployment evidence
+   Career       Experience quality and progression
+   Skills       Technical capability and credibility
+   Logistics    Location, notice period and availability
+   Behavior     Recruiter engagement and profile activity
 
 The final score is computed from these signals and adjusted using
 deterministic consistency checks.
 
 ------------------------------------------------------------------------
 
-# 🛡️ Explainable Ranking
+#  Explainable Ranking
 
 Every recommendation is accompanied by:
 
@@ -237,7 +234,7 @@ No external APIs or LLM inference are used during candidate ranking.
 
 ------------------------------------------------------------------------
 
-# 📂 Project Structure
+#  Project Structure
 
 ``` text
 HireSense-AI/
@@ -253,7 +250,7 @@ HireSense-AI/
 
 ------------------------------------------------------------------------
 
-# 📤 Output
+#  Output
 
 The application produces:
 
@@ -267,7 +264,7 @@ The application produces:
 
 ------------------------------------------------------------------------
 
-# 🛠️ Technology Stack
+#  Technology Stack
 
   Technology   Purpose
   ------------ ---------------------------------
@@ -280,7 +277,7 @@ The application produces:
 
 ------------------------------------------------------------------------
 
-# 🎯 Design Principles
+#  Design Principles
 
 -   Explainable AI
 -   Transparent scoring
@@ -291,7 +288,7 @@ The application produces:
 
 ------------------------------------------------------------------------
 
-# 🚀 Future Improvements
+#  Future Improvements
 
 -   Job Description parser
 -   Resume parser
@@ -303,6 +300,6 @@ The application produces:
 
 ------------------------------------------------------------------------
 
-# 📄 License
+#  License
 
 Developed for the **Redrob India Data & AI Challenge**.
