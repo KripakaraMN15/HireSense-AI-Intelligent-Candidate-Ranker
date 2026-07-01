@@ -1,0 +1,43 @@
+# Redrob Hackathon — Submission Metadata
+
+team_name: "Code and Commit"
+
+primary_contact:
+  name: "Kripakara M N"
+  email: "kripakaramn@gmail.com"
+  phone: "+91-8884707671"
+
+
+github_repo: "https://github.com/KripakaraMN15/HireSense-AI-Intelligent-Candidate-Ranker"
+sandbox_link: "https://huggingface.co/spaces/KripakaraMN/redrob-ranker"
+
+reproduce_command: "python rank.py --candidates ./candidates.jsonl --out ./submission.csv"
+
+reproduce_command: "python app.py"
+
+compute:
+  platform: "Local Windows Workstation"
+  cpu_cores: 8
+  ram_gb: 16
+  python_version: "3.11+"
+  os: "Windows"
+  uses_gpu_for_inference: false
+  has_network_during_ranking: false
+  pre_computation_required: false
+  pre_computation_time_minutes: 0
+
+ai_tools_used:
+  - "OpenAI ChatGPT, Cursor"
+
+ai_usage_summary: |
+  AI assistance was used for solution ideation, system architecture design, UI refinement, documentation, visualization design, and code review. The candidate ranking logic, scoring methodology, and implementation remain deterministic and transparent. No candidate profile data was processed by external LLMs during ranking or inference.
+
+methodology_summary: |
+  HireSense AI is a transparent, CPU-only candidate ranking system designed for Senior AI Engineer hiring. It extracts structured evidence from candidate profiles, career history, skills, and Redrob behavioral signals to compute explainable scores across Role Fit, Production Experience, Career Progression, Technical Skills, Logistics, Behavior, and Consistency. The engine applies calibration bonuses and penalties for unsupported claims or inconsistencies, producing ranked candidates with reasoning, confidence scores, skill-gap analysis, interview preparation, and executive hiring insights. The entire pipeline executes locally without GPU acceleration, external APIs, or network access during ranking.
+
+declarations:
+  read_submission_spec: true
+  code_is_original_work: true
+  no_collusion: true
+  honeypot_check_done: true
+  reproduction_tested: true
